@@ -1,0 +1,15 @@
+
+
+.overview-wrapper {
+    padding: 20px;
+
+}
+.overview {
+    /* margin: 20px; */
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.overview-header {
+    padding: 15px;
+}
