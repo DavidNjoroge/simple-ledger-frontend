@@ -5,8 +5,10 @@ import { RouteProps } from "react-router";
 
 interface RouteInterface extends RouteProps {
   path: string
-  component: any
+  component?: any
   routes?: RouteInterface[]
+  redirect?: boolean
+  to?: string
 }
 
 const routes: RouteInterface[] = [
@@ -14,6 +16,7 @@ const routes: RouteInterface[] = [
     path: "/login",
     component: Login,
     exact: true,
+    
   },
   {
     path: "/",
@@ -22,8 +25,14 @@ const routes: RouteInterface[] = [
       {
         path: "/dashboard",
         component: DashboardPage,
-
+        exact: true
       },
+      // { redirect: true, 
+      //   path: "/", 
+      //   to: "/dashboard",
+      //   component: null
+      // }
+
     ]
   }
 ];

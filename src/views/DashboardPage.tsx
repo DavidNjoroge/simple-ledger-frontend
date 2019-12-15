@@ -35,7 +35,6 @@ export default class DashboardPage extends React.Component<IAppProps, IDashboard
 
   componentDidMount() {
     this.dashboardService.getLedgers().then(ledgers => {
-      console.log("get ledgers", ledgers)
       this.setState({ledgers: ledgers})
 
       if (ledgers.length > 0) {
