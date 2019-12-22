@@ -1,16 +1,13 @@
 const develop = {
-    ACCOUNT_SERVICE: "http://localhost:8000/",
-    OPERATION_SERVICE: "http://localhost:8000/"
+    ACCOUNT_SERVICE: "https://payment-wallet.herokuapp.com/",
 };
 
 const local = {
-    ACCOUNT_SERVICE: "http://localhost:8000/",
-    OPERATION_SERVICE: "http://localhost:8000/"
+    ACCOUNT_SERVICE: "http://localhost:8080/",
 };
 
 const prod = {
-    ACCOUNT_SERVICE: "http://localhost:8000/",
-    OPERATION_SERVICE: "http://localhost:8000/"
+    ACCOUNT_SERVICE: "https://payment-wallet.herokuapp.com/",
 };
 
 

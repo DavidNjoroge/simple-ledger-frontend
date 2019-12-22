@@ -7,12 +7,10 @@ import { DashboardService } from "../api";
 export interface IAppProps {
 }
 
-
 export interface IDashboardState {
   selectedLedger: LedgerInterface,
   ledgers: any[]
 }
-
 
 export default class DashboardPage extends React.Component<IAppProps, IDashboardState> {
     dashboardService: DashboardService = new DashboardService();

@@ -19,19 +19,19 @@ const routes: RouteInterface[] = [
     
   },
   {
-    path: "/",
+    path: "",
     component: Dashboard,
+    exact: true,
     routes: [
       {
         path: "/dashboard",
         component: DashboardPage,
         exact: true
       },
-      // { redirect: true, 
-      //   path: "/", 
-      //   to: "/dashboard",
-      //   component: null
-      // }
+      { redirect: true, 
+        path: "", 
+        to: "/dashboard",
+      }
 
     ]
   }

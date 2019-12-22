@@ -59,31 +59,50 @@ export class BaseApi {
         });
     }
 
-
-
-    download(url: string) {
-        // this.props.toggleLoader(true);
+    post(url: string, data: any): Promise<any> {
         return new Promise(async (resolve, reject) => {
-              try {
-                const res = await this.downloadApi().get(url);
-                // this.props.toggleLoader(false);
-                return resolve(res);
+            try {
+                const res = await this.createApi().post(url, data);
+                return resolve(res.data);
             }
             catch (error) {
                 if (error.response) {
                     const errors = error.response.data.errors;
                     for (const key in errors) {
                         if (errors.hasOwnProperty(key)) {
-                            const element = errors[key];
-                            // this.props.createMessage('error', element);
                         }
                     }
-                    // this.props.toggleLoader(false);
                     reject(error);
                 }
             }
         });
     }
+
+
+
+    // download(url: string) {
+    //     // this.props.toggleLoader(true);
+    //     return new Promise(async (resolve, reject) => {
+    //           try {
+    //             const res = await this.downloadApi().get(url);
+    //             // this.props.toggleLoader(false);
+    //             return resolve(res);
+    //         }
+    //         catch (error) {
+    //             if (error.response) {
+    //                 const errors = error.response.data.errors;
+    //                 for (const key in errors) {
+    //                     if (errors.hasOwnProperty(key)) {
+    //                         const element = errors[key];
+    //                         // this.props.createMessage('error', element);
+    //                     }
+    //                 }
+    //                 // this.props.toggleLoader(false);
+    //                 reject(error);
+    //             }
+    //         }
+    //     });
+    // }
 
     // delete(url, data) {
     //     this.props.toggleLoader(true);
@@ -107,29 +126,6 @@ export class BaseApi {
     //     });
     // }
 
-    // post(url, data) {
-    //     this.props.toggleLoader(true);
-    //     // debugger
-    //     return new Promise((resolve, reject) => {
-    //         return this.createApi().post(url, data).then(res => {
-    //             this.props.toggleLoader(false);
-    //             return resolve(res);
-    //         }).catch(error=> {
-    //           if (error.response) {
-    //               const errors = error.response.data.errors;
-    //               for (const key in errors) {
-    //                   if (errors.hasOwnProperty(key)) {
-    //                       const element = errors[key];
-    //                       this.props.createMessage('error', element);
-    //                   }
-    //               }
-    //               this.props.toggleLoader(false);
-    //               reject(error);
-    //           }
-    //       });
-    //     });
-    // }
-
 }
 export class AccountService extends BaseApi {
     baseUrl: any;
@@ -141,12 +137,19 @@ export class AccountService extends BaseApi {
 
 export class DashboardService extends BaseApi {
     baseUrl: any;
-  constructor() {
-      super()
-    this.baseUrl = config.ACCOUNT_SERVICE;
-  }
+    constructor() {
+        super()
+        this.baseUrl = config.ACCOUNT_SERVICE;
+    }
 
-  getLedgers(): Promise<LedgerInterface[]> {
-    return this.get("ledgers");
+    getLedgers(): Promise<LedgerInterface[]> {
+        return this.get("ledgers");
+    }
 }
+
+export interface LoginRequestInterface {
+    email: string
+    password: string
 }
+
+

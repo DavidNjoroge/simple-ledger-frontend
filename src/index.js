@@ -9,8 +9,9 @@ import { HashRouter } from 'react-router-dom';
 import setAuthorizationToken from "./setAuthorizationToken"
 
 
-if(localStorage.token){ 
-    setAuthorizationToken(localStorage.token);
+if(localStorage.accessToken){ 
+    setAuthorizationToken(JSON.parse(localStorage.accessToken));
+
 }
 
 ReactDOM.render(

@@ -5,6 +5,7 @@ import { Form, Button } from 'react-bootstrap';
 
 
 export interface ILoginFormProps {
+    submitForm: any
 }
 
 export interface ILoginFormState {
@@ -24,7 +25,6 @@ export default class LoginForm extends React.Component<ILoginFormProps, ILoginFo
     }
 
     handleChange(event: any) {
-        console.log(event)
         let form = event.target.name;
         let state: any = {};
         state[form] = event.target.value;
@@ -34,6 +34,7 @@ export default class LoginForm extends React.Component<ILoginFormProps, ILoginFo
 
     handleSubmit(event: any) {
         console.log('A name was submitted: ', this.state);
+        this.props.submitForm(this.state)
         event.preventDefault();
     }
 
