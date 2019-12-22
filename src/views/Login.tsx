@@ -20,10 +20,10 @@ export default class Login extends React.Component<ILoginProps, any> {
 
     handleFormSubmit(loginRequest: LoginRequestInterface) {
       this.authService.login(loginRequest).then((response: LoginResponse) => {
+        localStorage.clear()
         localStorage.setItem('userPrincipal', JSON.stringify(response.userPrincipal))
-        localStorage.setItem('accessToken', JSON.stringify(response.accessToken))
+        localStorage.setItem('accessToken', response.accessToken)
         this.props.history.push('/');
-
       })
 
 

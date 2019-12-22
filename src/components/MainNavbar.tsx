@@ -4,12 +4,29 @@ import './MainNavbar.css';
 import UserPrincipalInterface from '../shared/interfaces/UserPrincipalInterface';
 
 
-export default class MainNavbar extends Component<any, any> {
-  userPrincipal: UserPrincipalInterface;
+
+
+export interface MainNavbarState {
+  userPrincipal: UserPrincipalInterface,
+}
+
+
+export default class MainNavbar extends Component<any, MainNavbarState> {
 
   constructor(props: any) {
     super(props);
-    this.userPrincipal = JSON.parse(localStorage.userPrincipal)
+    this.state = {
+      userPrincipal: this.getUser()
+    }
+  }
+
+  getUser() {
+    const localData = localStorage.userPrincipal
+    if (localData) {
+      return JSON.parse(localData)
+    } else {
+      return null
+    }
   }
 
 
@@ -29,7 +46,7 @@ export default class MainNavbar extends Component<any, any> {
 
         <Navbar.Collapse className="justify-content-end">
               <Navbar.Text>
-                {this.userPrincipal.name}
+                {this.state.userPrincipal?.name}
               </Navbar.Text>
 
               <Nav.Link href="#/login" onClick={this.logOut} >Logout</Nav.Link>

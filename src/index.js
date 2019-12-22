@@ -10,7 +10,7 @@ import setAuthorizationToken from "./setAuthorizationToken"
 
 
 if(localStorage.accessToken){ 
-    setAuthorizationToken(JSON.parse(localStorage.accessToken));
+    setAuthorizationToken(localStorage.accessToken);
 
 }
 
