@@ -45,7 +45,7 @@ export default class LedgerForm extends React.Component<IReusableFormProps, IReu
                     <input value={this.state.value} name="name" onChange={this.handleChange} type="text" className="form-control" id="name" placeholder="name" />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="description">Name</label>
+                    <label htmlFor="description">Description</label>
                     <input value={this.state.value} name="description" onChange={this.handleChange} type="text" className="form-control" id="description" placeholder="description" />
                 </div>
                 <input type="submit" value="Submit" />
