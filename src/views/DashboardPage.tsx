@@ -3,13 +3,14 @@ import './DashboardPage.css';
 import LedgerInterface from "../shared/interfaces/LedgerInterface";
 import { Form, Card, Table } from "react-bootstrap";
 import { DashboardService } from "../api";
+import CreateLedger, {LedgerRequest} from "../components/create-ledger-button-and-modal/CreateLedger";
 
 export interface IAppProps {
 }
 
 export interface IDashboardState {
-  selectedLedger: LedgerInterface,
-  ledgers: any[]
+  selectedLedger?: LedgerInterface,
+  ledgers?: any[]
 }
 
 export default class DashboardPage extends React.Component<IAppProps, IDashboardState> {
@@ -27,19 +28,31 @@ export default class DashboardPage extends React.Component<IAppProps, IDashboard
         status: "ACTIVE"
       },
       ledgers: []
-    }
+    };
 
+    this.saveLedger = this.saveLedger.bind(this);
+    this.getLedgers = this.getLedgers.bind(this);
   }
 
   componentDidMount() {
+    this.getLedgers();
+  }
+
+  getLedgers() {
     this.dashboardService.getLedgers().then(ledgers => {
-      this.setState({ledgers: ledgers})
+      this.setState({ ledgers: ledgers});
 
-      if (ledgers.length > 0) {
-        
-      }
+      // if (ledgers.length > 0) {
+      //
+      // }
     })
+  }
 
+  saveLedger(payload: LedgerRequest) {
+    this.dashboardService.saveLedger(payload).then(ledger => {
+      this.setState({ selectedLedger: ledger });
+      this.getLedgers();
+    })
   }
 
   render() {
@@ -51,19 +64,27 @@ export default class DashboardPage extends React.Component<IAppProps, IDashboard
               <h3>Overview</h3>
             </div>
             <div className="col-6">
-
             </div>
 
-            <div className="col-3">
-              <Form.Group controlId="exampleForm.ControlSelect1">
-                <Form.Control as="select">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                </Form.Control>
-              </Form.Group>
+            <div className="col-3 ledger-section">
+
+              <div className="ledger-section-select">
+
+                <Form.Group controlId="exampleForm.ControlSelect1" >
+                  <Form.Control as="select">
+                    <option>Test ledger</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </Form.Control>
+                </Form.Group>
+              </div>
+              <div>
+                <CreateLedger saveLedger={this.saveLedger}/>
+
+              </div>
+
             </div>
 
           </div>

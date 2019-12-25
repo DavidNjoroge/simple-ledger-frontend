@@ -1,6 +1,7 @@
 import axios from "axios";
 import config  from "./config";
 import LedgerInterface from "./shared/interfaces/LedgerInterface";
+import {LedgerRequest} from "./components/create-ledger-button-and-modal/CreateLedger";
 
 const checkToken = (stat: any) => {
     if(stat===401) {
@@ -79,53 +80,6 @@ export class BaseApi {
     }
 
 
-
-    // download(url: string) {
-    //     // this.props.toggleLoader(true);
-    //     return new Promise(async (resolve, reject) => {
-    //           try {
-    //             const res = await this.downloadApi().get(url);
-    //             // this.props.toggleLoader(false);
-    //             return resolve(res);
-    //         }
-    //         catch (error) {
-    //             if (error.response) {
-    //                 const errors = error.response.data.errors;
-    //                 for (const key in errors) {
-    //                     if (errors.hasOwnProperty(key)) {
-    //                         const element = errors[key];
-    //                         // this.props.createMessage('error', element);
-    //                     }
-    //                 }
-    //                 // this.props.toggleLoader(false);
-    //                 reject(error);
-    //             }
-    //         }
-    //     });
-    // }
-
-    // delete(url, data) {
-    //     this.props.toggleLoader(true);
-    //     return new Promise((resolve, reject) => {
-    //           return this.createApi().delete(url, data).then(res => {
-    //             this.props.toggleLoader(false);
-    //             return resolve(res);
-    //         }).catch(error=> {
-    //             if (error.response) {
-    //                 const errors = error.response.data.errors;
-    //                 for (const key in errors) {
-    //                     if (errors.hasOwnProperty(key)) {
-    //                         const element = errors[key];
-    //                         this.props.createMessage('error', element);
-    //                     }
-    //                 }
-    //                 this.props.toggleLoader(false);
-    //                 reject(error);
-    //             }
-    //         });
-    //     });
-    // }
-
 }
 export class AccountService extends BaseApi {
     baseUrl: any;
@@ -138,17 +92,21 @@ export class AccountService extends BaseApi {
 export class DashboardService extends BaseApi {
     baseUrl: any;
     constructor() {
-        super()
+        super();
         this.baseUrl = config.ACCOUNT_SERVICE;
     }
 
     getLedgers(): Promise<LedgerInterface[]> {
         return this.get("ledgers");
     }
+
+    saveLedger(payload: LedgerRequest): Promise<LedgerInterface> {
+        return this.post("ledgers", payload);
+    }
 }
 
 export interface LoginRequestInterface {
-    email: string
+    email: string,
     password: string
 }
 

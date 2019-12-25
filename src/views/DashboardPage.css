@@ -5,11 +5,23 @@
 
 }
 .overview {
-    /* margin: 20px; */
     border: 1px solid #ccc;
     border-radius: 3px;
 }
 
 .overview-header {
     padding: 15px;
+}
+
+.ledger-section {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.ledger-section > div {
+    padding-left: 20px;
+}
+
+.ledger-section-select {
+    min-width: 100px;
 }
