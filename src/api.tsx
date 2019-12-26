@@ -1,6 +1,6 @@
 import axios from "axios";
 import config  from "./config";
-import LedgerInterface from "./shared/interfaces/LedgerInterface";
+import LedgerInterface, {LedgerDetailInterface} from "./shared/interfaces/LedgerInterface";
 import {LedgerRequest} from "./components/create-ledger-button-and-modal/CreateLedger";
 
 const checkToken = (stat: any) => {
@@ -100,7 +100,11 @@ export class DashboardService extends BaseApi {
         return this.get("ledgers");
     }
 
-    saveLedger(payload: LedgerRequest): Promise<LedgerInterface> {
+    getLedgerDetail(id: number): Promise<LedgerDetailInterface> {
+        return this.get(`ledgers/${id}`);
+    }
+
+    saveLedger(payload: LedgerRequest): Promise<LedgerDetailInterface> {
         return this.post("ledgers", payload);
     }
 }

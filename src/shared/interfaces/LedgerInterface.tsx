@@ -1,11 +1,17 @@
 
 
 export default interface LedgerInterface {
+    id: number
     name: string
     description?: string
     credit: number
     debit: number
-    ledgerAccounts?: any[]
-    transactions?: any[]
     status: string
+    dateCreated: string
 } 
+
+export interface LedgerDetailInterface {
+    ledger?: LedgerInterface
+    accounts?: any[]
+    transactions?: any[]
+}

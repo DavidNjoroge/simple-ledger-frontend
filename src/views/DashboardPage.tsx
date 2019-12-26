@@ -1,16 +1,17 @@
 import React from "react";
 import './DashboardPage.css';
-import LedgerInterface from "../shared/interfaces/LedgerInterface";
-import { Form, Card, Table } from "react-bootstrap";
+import LedgerInterface, {LedgerDetailInterface} from "../shared/interfaces/LedgerInterface";
+import {Form, Card, Table, Button} from "react-bootstrap";
 import { DashboardService } from "../api";
 import CreateLedger, {LedgerRequest} from "../components/create-ledger-button-and-modal/CreateLedger";
+import {getLatestLedger} from "../shared/helpers/ledger";
 
 export interface IAppProps {
 }
 
 export interface IDashboardState {
-  selectedLedger?: LedgerInterface,
-  ledgers?: any[]
+  selectedLedger?: LedgerDetailInterface,
+  ledgers?: LedgerInterface[]
 }
 
 export default class DashboardPage extends React.Component<IAppProps, IDashboardState> {
@@ -21,12 +22,7 @@ export default class DashboardPage extends React.Component<IAppProps, IDashboard
     super(props);
 
     this.state = {
-      selectedLedger: {
-        name: "test",
-        debit: 0,
-        credit: 0,
-        status: "ACTIVE"
-      },
+      selectedLedger: {},
       ledgers: []
     };
 
@@ -41,10 +37,14 @@ export default class DashboardPage extends React.Component<IAppProps, IDashboard
   getLedgers() {
     this.dashboardService.getLedgers().then(ledgers => {
       this.setState({ ledgers: ledgers});
+      const selectedLedger = getLatestLedger(ledgers);
+      console.log(selectedLedger);
+      if (selectedLedger) {
+        this.dashboardService.getLedgerDetail(selectedLedger.id).then (ledger => {
+          this.setState({selectedLedger: ledger})
+        })
 
-      // if (ledgers.length > 0) {
-      //
-      // }
+      }
     })
   }
 
@@ -59,14 +59,11 @@ export default class DashboardPage extends React.Component<IAppProps, IDashboard
     return (
       <div className="overview-wrapper">
         <div className="overview container-fluid">
-          <div className="overview-header row">
+          <div className="sl-padding row">
             <div className="col-3">
               <h3>Overview</h3>
             </div>
-            <div className="col-6">
-            </div>
-
-            <div className="col-3 ledger-section">
+            <div className="col-9 ledger-section">
 
               <div className="ledger-section-select">
 
@@ -92,14 +89,30 @@ export default class DashboardPage extends React.Component<IAppProps, IDashboard
           <div>
             <Card style={{ width: '18rem' }}>
               <Card.Body>
-                <Card.Title>Test Ledger</Card.Title>
+                <Card.Title>{this.state.selectedLedger?.ledger?.name}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">Credit: <strong>1000</strong></Card.Subtitle>
                 <Card.Subtitle className="mb-2 text-muted">Credit: <strong>1000</strong></Card.Subtitle>
               </Card.Body>
             </Card>
           </div>
 
+
+
           <div>
+            <div className="sl-padding row">
+
+
+              <div className="col-3">
+                <h4>Transactions</h4>
+              </div>
+              <div className="col-9 ledger-section">
+                <Button variant="primary">
+                  New Transaction
+                </Button>
+              </div>
+            </div>
+
+
             <Table striped bordered hover size="sm">
               <thead>
                 <tr>

@@ -9,10 +9,6 @@
     border-radius: 3px;
 }
 
-.overview-header {
-    padding: 15px;
-}
-
 .ledger-section {
     display: flex;
     justify-content: flex-end;
@@ -24,4 +20,8 @@
 
 .ledger-section-select {
     min-width: 100px;
+}
+
+.sl-padding {
+    padding: 15px;
 }
