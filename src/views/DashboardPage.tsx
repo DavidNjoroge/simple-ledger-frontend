@@ -10,16 +10,16 @@ import CreateLedger, {
 } from '../components/create-ledger-button-and-modal/CreateLedger';
 import { getLatestLedger } from '../shared/helpers/ledger';
 
-export interface IDashboardState {
+export interface DashboardState {
     selectedLedger?: LedgerDetailInterface;
     ledgers?: LedgerInterface[];
 }
 
 export default class DashboardPage extends React.Component<
 {},
-IDashboardState
+DashboardState
 > {
-    dashboardService: DashboardService = new DashboardService();
+    dashboardService = new DashboardService();
 
     constructor(props: {}) {
         super(props);

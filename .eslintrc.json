@@ -19,6 +19,7 @@
     "@typescript-eslint/assertion-style-if-you-really-have-to-assert": "off",
     "@typescript-eslint/object-literal-assertion-style": "off",
     "@typescript-eslint/non-object-literal-assertion-style": "off",
+    "@typescript-eslint/explicit-member-accessibility": "off",
     "indent": ["error", 4]
   }
 }
