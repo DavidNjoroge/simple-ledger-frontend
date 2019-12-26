@@ -3,43 +3,27 @@ import config  from "./config";
 import LedgerInterface, {LedgerDetailInterface} from "./shared/interfaces/LedgerInterface";
 import {LedgerRequest} from "./components/create-ledger-button-and-modal/CreateLedger";
 
-const checkToken = (stat: any) => {
+const checkToken = (stat: number) => {
     if(stat===401) {
         document.location.href = '/#/login';
     }
 };
 
-
-
-
 export class BaseApi {
     baseUrl: string;
     constructor() {
         this.baseUrl = '';
-        // this.api = this.createApi();
     }
 
     createApi() {
         return axios.create({
             baseURL: this.baseUrl,
-            validateStatus: function (status: any) {
+            validateStatus: function (status: number): boolean {
                 checkToken(status);
                 return status.toString().includes("20");
             }
-      
-        }); 
-    }
-
-    downloadApi() {
-        return axios.create({
-            baseURL: this.baseUrl,
-            validateStatus: function (status) {
-                checkToken(status);
-                return status.toString().includes("20");
-            },
-            responseType: 'arraybuffer'
         });
-    } 
+    }
 
     get(url: string): Promise<any> {
         return new Promise(async (resolve, reject) => {
@@ -57,6 +41,20 @@ export class BaseApi {
                     reject(error);
                 }
             }
+        }).catch(function (error) {
+            if (error.response) {
+                // Request made and server responded
+                console.log(error.response.data);
+                console.log(error.response.status);
+                console.log(error.response.headers);
+            } else if (error.request) {
+                // The request was made but no response was received
+                console.log(error.request);
+            } else {
+                // Something happened in setting up the request that triggered an Error
+                console.log('Error', error.message);
+            }
+            return Promise.reject(error)
         });
     }
 
@@ -82,15 +80,15 @@ export class BaseApi {
 
 }
 export class AccountService extends BaseApi {
-    baseUrl: any;
+    baseUrl: string;
     constructor() {
-        super()
+        super();
         this.baseUrl = config.ACCOUNT_SERVICE;
     }
 }
 
 export class DashboardService extends BaseApi {
-    baseUrl: any;
+    baseUrl: string;
     constructor() {
         super();
         this.baseUrl = config.ACCOUNT_SERVICE;

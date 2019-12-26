@@ -100,17 +100,17 @@ DashboardState
                         <Card style={{ width: '18rem' }}>
                             <Card.Body>
                                 <Card.Title>
-                  Ledger: {this.state.selectedLedger?.ledger?.name}
+                                    Ledger: {this.state.selectedLedger?.ledger?.name}
                                 </Card.Title>
                                 <Card.Subtitle className="mb-2 text-muted">
-                  LedgerAccounts:{' '}
+                                    LedgerAccounts:{' '}
                                     <strong>{this.state.selectedLedger?.accounts?.length}</strong>
                                 </Card.Subtitle>
                                 <Card.Subtitle className="mb-2 text-muted">
-                  Credit: <strong>1000</strong>
+                                    Credit: <strong>{this.state.selectedLedger?.ledgerSummary?.credit}</strong>
                                 </Card.Subtitle>
                                 <Card.Subtitle className="mb-2 text-muted">
-                  Credit: <strong>1000</strong>
+                                    Debit: <strong>{this.state.selectedLedger?.ledgerSummary?.debit}</strong>
                                 </Card.Subtitle>
                             </Card.Body>
                         </Card>

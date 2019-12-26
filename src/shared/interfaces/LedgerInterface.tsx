@@ -1,5 +1,4 @@
 
-
 export default interface LedgerInterface {
     id: number
     name: string
@@ -14,4 +13,10 @@ export interface LedgerDetailInterface {
     ledger?: LedgerInterface
     accounts?: any[]
     transactions?: any[]
+    ledgerSummary?: LedgerSummaryInterface
+}
+
+export interface LedgerSummaryInterface {
+    credit: number
+    debit: number
 }
