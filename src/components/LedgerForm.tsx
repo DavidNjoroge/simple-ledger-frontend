@@ -26,8 +26,8 @@ export default class LedgerForm extends React.Component<IReusableFormProps, IReu
     }
 
     handleChange(event: any) {
-        let form = event.target.name;
-        let state: any = {};
+        const form = event.target.name;
+        const state: any = {};
         state[form] = event.target.value;
 
         this.setState(state);

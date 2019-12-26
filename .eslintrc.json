@@ -1,0 +1,24 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "jsx": true,
+    "useJSXTextNode": true
+  },
+  "extends": [
+    "plugin:react/recommended", 
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "prettier/@typescript-eslint",
+    "react-app"
+  ],
+  "plugins": ["@typescript-eslint", "react"],
+  "rules": {
+    "@typescript-eslint/consistent-type-definitions": "off",
+    "@typescript-eslint/consistent-type-assertions": "warn",
+    "@typescript-eslint/no-unused-expressions": "warn",
+    "@typescript-eslint/assertion-style-if-you-really-have-to-assert": "off",
+    "@typescript-eslint/object-literal-assertion-style": "off",
+    "@typescript-eslint/non-object-literal-assertion-style": "off",
+    "indent": ["error", 4]
+  }
+}

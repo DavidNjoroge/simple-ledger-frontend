@@ -43,7 +43,7 @@ export class BaseApi {
 
     get(url: string): Promise<any> {
         return new Promise(async (resolve, reject) => {
-              try {
+            try {
                 const res = await this.createApi().get(url);
                 return resolve(res.data);
             }
@@ -83,10 +83,10 @@ export class BaseApi {
 }
 export class AccountService extends BaseApi {
     baseUrl: any;
-  constructor() {
-      super()
-    this.baseUrl = config.ACCOUNT_SERVICE;
-  }
+    constructor() {
+        super()
+        this.baseUrl = config.ACCOUNT_SERVICE;
+    }
 }
 
 export class DashboardService extends BaseApi {

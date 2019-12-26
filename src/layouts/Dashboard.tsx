@@ -10,20 +10,20 @@ export interface IDashboardProps {
 
 export default class Dashboard extends Component<any, any> {
 
-  componentDidMount() {
+    componentDidMount() {
 
-      if(localStorage.accessToken){ 
-          setAuthorizationToken(localStorage.accessToken);
-      }
-  }
-  render() {
-      return (
-          <div className="container-fluid App">
-              <MainNavbar/>
-              {this.props.routes.map((route: any, i: any) => {
-                  return <RouteWithSubRoutes key={i} {...route} />;
-              })}
-        </div>
-      );
-  }
+        if(localStorage.accessToken){ 
+            setAuthorizationToken(localStorage.accessToken);
+        }
+    }
+    render() {
+        return (
+            <div className="container-fluid App">
+                <MainNavbar/>
+                {this.props.routes.map((route: any, i: any) => {
+                    return <RouteWithSubRoutes key={i} {...route} />;
+                })}
+            </div>
+        );
+    }
 }

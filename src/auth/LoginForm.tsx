@@ -25,8 +25,8 @@ export default class LoginForm extends React.Component<ILoginFormProps, ILoginFo
     }
 
     handleChange(event: any) {
-        let form = event.target.name;
-        let state: any = {};
+        const form = event.target.name;
+        const state: any = {};
         state[form] = event.target.value;
 
         this.setState(state);
@@ -38,25 +38,25 @@ export default class LoginForm extends React.Component<ILoginFormProps, ILoginFo
         event.preventDefault();
     }
 
-  public render() {
-    return (
-        <form onSubmit={this.handleSubmit}>
-        <Form.Group controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control name="email" type="email" placeholder="Enter email" value={this.state.value} onChange={this.handleChange} required/>
-            {/* <Form.Text className="text-muted">
+    public render() {
+        return (
+            <form onSubmit={this.handleSubmit}>
+                <Form.Group controlId="formBasicEmail">
+                    <Form.Label>Email address</Form.Label>
+                    <Form.Control name="email" type="email" placeholder="Enter email" value={this.state.value} onChange={this.handleChange} required/>
+                    {/* <Form.Text className="text-muted">
                 We'll never share your email with anyone else.
             </Form.Text> */}
-        </Form.Group>
+                </Form.Group>
 
-        <Form.Group controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control name="password" type="password" placeholder="Password" value={this.state.value} onChange={this.handleChange} required/>
-        </Form.Group>
-        <Button variant="primary" type="submit" value="Submit" >
+                <Form.Group controlId="formBasicPassword">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control name="password" type="password" placeholder="Password" value={this.state.value} onChange={this.handleChange} required/>
+                </Form.Group>
+                <Button variant="primary" type="submit" value="Submit" >
             Submit
-        </Button>
-    </form>
-    );
-  }
+                </Button>
+            </form>
+        );
+    }
 }

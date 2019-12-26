@@ -12,29 +12,29 @@ interface RouteInterface extends RouteProps {
 }
 
 const routes: RouteInterface[] = [
-  {
-    path: "/login",
-    component: Login,
-    exact: true,
+    {
+        path: "/login",
+        component: Login,
+        exact: true,
     
-  },
-  {
-    path: "",
-    component: Dashboard,
-    exact: true,
-    routes: [
-      {
-        path: "/dashboard",
-        component: DashboardPage,
-        exact: true
-      },
-      { redirect: true, 
-        path: "", 
-        to: "/dashboard",
-      }
+    },
+    {
+        path: "",
+        component: Dashboard,
+        exact: true,
+        routes: [
+            {
+                path: "/dashboard",
+                component: DashboardPage,
+                exact: true
+            },
+            { redirect: true, 
+                path: "", 
+                to: "/dashboard",
+            }
 
-    ]
-  }
+        ]
+    }
 ];
 
 export default routes;

@@ -62,6 +62,6 @@ export default class CreateLedger extends React.Component<ICreateLedgerProps, IC
                     </Modal.Body>
                 </Modal>
             </div>
-  );
-}
+        );
+    }
 }
