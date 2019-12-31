@@ -11,12 +11,25 @@ export default interface LedgerInterface {
 
 export interface LedgerDetailInterface {
     ledger?: LedgerInterface
-    accounts?: any[]
-    transactions?: any[]
-    ledgerSummary?: LedgerSummaryInterface
+    accounts: AccountInterface[]
+    transactions: TransactionInterface[]
+    ledgerSummary: LedgerSummaryInterface
 }
 
 export interface LedgerSummaryInterface {
     credit: number
     debit: number
+}
+
+export interface TransactionInterface {
+    account: AccountInterface
+    description?: string
+    referenceNumber?: string
+    amount: number
+}
+
+export interface AccountInterface {
+    name: string
+    accountType: string
+    description?: string
 }

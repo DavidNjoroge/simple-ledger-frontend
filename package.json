@@ -21,6 +21,7 @@
   "scripts": {
     "start": "BROWSER=none react-scripts start",
     "start:develop": "BROWSER=none REACT_APP_STAGE=develop react-scripts start",
+    "start:local": "BROWSER=none REACT_APP_STAGE=local react-scripts start",
     "lint": "eslint './src/**/*.{ts,tsx, js, jsx}'",
     "lint:fix": "eslint './src/**/*.{ts,tsx, js, jsx}' --fix",
     "build": "react-scripts build",

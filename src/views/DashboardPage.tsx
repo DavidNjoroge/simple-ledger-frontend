@@ -3,12 +3,15 @@ import './DashboardPage.css';
 import LedgerInterface, {
     LedgerDetailInterface
 } from '../shared/interfaces/LedgerInterface';
-import { Form, Card, Table, Button } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import { DashboardService } from '../api';
 import CreateLedger, {
     LedgerRequest
 } from '../components/create-ledger-button-and-modal/CreateLedger';
 import { getLatestLedger } from '../shared/helpers/ledger';
+import CreateTransaction from "../components/create-translation-button-and-model/CreateTransaction";
+import TransactionTable from "../components/transaction-table/TransactionTable";
+import LedgerOverview from "../components/ledger-overview/LedgerOverview";
 
 export interface DashboardState {
     selectedLedger?: LedgerDetailInterface;
@@ -25,7 +28,6 @@ DashboardState
         super(props);
 
         this.state = {
-            selectedLedger: {},
             ledgers: []
         };
 
@@ -66,6 +68,14 @@ DashboardState
         });
     }
 
+
+    saveTransaction(payload: LedgerRequest): void {
+        this.dashboardService.saveLedger(payload).then((ledger: LedgerDetailInterface) => {
+            this.setState({ selectedLedger: ledger });
+            this.getLedgers();
+        });
+    }
+
     render() {
         return (
             <div className="overview-wrapper">
@@ -96,25 +106,7 @@ DashboardState
                         </div>
                     </div>
 
-                    <div>
-                        <Card style={{ width: '18rem' }}>
-                            <Card.Body>
-                                <Card.Title>
-                                    Ledger: {this.state.selectedLedger?.ledger?.name}
-                                </Card.Title>
-                                <Card.Subtitle className="mb-2 text-muted">
-                                    LedgerAccounts:{' '}
-                                    <strong>{this.state.selectedLedger?.accounts?.length}</strong>
-                                </Card.Subtitle>
-                                <Card.Subtitle className="mb-2 text-muted">
-                                    Credit: <strong>{this.state.selectedLedger?.ledgerSummary?.credit}</strong>
-                                </Card.Subtitle>
-                                <Card.Subtitle className="mb-2 text-muted">
-                                    Debit: <strong>{this.state.selectedLedger?.ledgerSummary?.debit}</strong>
-                                </Card.Subtitle>
-                            </Card.Body>
-                        </Card>
-                    </div>
+                    <LedgerOverview selectedLedger={this.state.selectedLedger}/>
 
                     <div>
                         <div className="sl-padding row">
@@ -122,34 +114,13 @@ DashboardState
                                 <h4>Transactions</h4>
                             </div>
                             <div className="col-9 ledger-section">
-                                <Button variant="primary">New Transaction</Button>
+                                <CreateTransaction saveTransaction={this.saveTransaction} />
                             </div>
                         </div>
 
-                        <Table striped bordered hover size="sm">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Username</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                </tr>
-                            </tbody>
-                        </Table>
+                        {/*transaction table section*/}
+                        <TransactionTable transactions={this.state.selectedLedger?.transactions} ledgerSummary={this.state.selectedLedger?.ledgerSummary}/>
+
                     </div>
                 </div>
             </div>

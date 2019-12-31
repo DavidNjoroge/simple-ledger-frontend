@@ -15,8 +15,8 @@ const choose = {
     "develop": develop,
     "local": local,
     "prod": prod
-}
+};
 
-const config = process.env.REACT_APP_STAGE? choose[process.env.REACT_APP_STAGE]: choose['develop']
+const config = process.env.REACT_APP_STAGE? choose[process.env.REACT_APP_STAGE]: choose['local'];
 
 export default { ...config };
