@@ -26,6 +26,7 @@
     "lint:fix": "eslint './src/**/*.{ts,tsx, js, jsx}' --fix",
     "build": "react-scripts build",
     "build:prod": "REACT_APP_STAGE=prod react-scripts build",
+    "build:cluster": "REACT_APP_STAGE=cluster react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "now-build": "npm run build:prod && mv build dist"
