@@ -16,6 +16,8 @@ export class BaseApi {
     }
 
     createApi() {
+        console.log('backend 1', this.baseUrl);
+
         return axios.create({
             baseURL: this.baseUrl,
             validateStatus: function (status: number): boolean {
