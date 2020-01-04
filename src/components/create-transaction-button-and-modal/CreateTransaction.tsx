@@ -1,11 +1,10 @@
 import * as React from 'react';
-import {LedgerRequest} from "../create-ledger-button-and-modal/CreateLedger";
 import {Button, Modal} from "react-bootstrap";
 import TransactionForm from "./TransactionForm";
 import {AccountInterface} from "../../shared/interfaces/LedgerInterface";
 
 export interface CreateTransactionProps {
-    saveTransaction: any
+    saveTransaction: (data: TransactionRequest) => void
     accounts?: AccountInterface[]
 }
 
@@ -26,9 +25,8 @@ export default class CreateTransaction extends React.Component<CreateTransaction
         this.state = {
             show: false
         };
-
-        this.handleShow = this.handleShow.bind(this);
         this.saveTransactionToBackend = this.saveTransactionToBackend.bind(this);
+        this.handleShow = this.handleShow.bind(this);
         this.handleClose = this.handleClose.bind(this);
     }
 
@@ -40,7 +38,7 @@ export default class CreateTransaction extends React.Component<CreateTransaction
         this.setState({show: false})
     }
 
-    saveTransactionToBackend(payload: LedgerRequest) {
+    saveTransactionToBackend(payload: TransactionRequest) {
         this.props.saveTransaction(payload);
         console.log(payload);
         this.setState({show: false})
