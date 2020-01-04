@@ -9,7 +9,7 @@ import CreateLedger, {
     LedgerRequest
 } from '../components/create-ledger-button-and-modal/CreateLedger';
 import { getLatestLedger } from '../shared/helpers/ledger';
-import CreateTransaction from "../components/create-transaction-button-and-modal/CreateTransaction";
+import CreateTransaction, {TransactionRequest} from "../components/create-transaction-button-and-modal/CreateTransaction";
 import TransactionTable from "../components/transaction-table/TransactionTable";
 import LedgerOverview from "../components/ledger-overview/LedgerOverview";
 
@@ -70,7 +70,7 @@ DashboardState
     }
 
 
-    saveTransaction(payload: LedgerRequest): void {
+    saveTransaction(payload: TransactionRequest): void {
         const ledgerDetail = this.state.selectedLedger;
         if (ledgerDetail) {
             this.dashboardService.saveTransaction(ledgerDetail.ledger.id, payload).then((ledger: LedgerDetailInterface) => {

@@ -2,6 +2,7 @@ import axios from "axios";
 import config  from "./config";
 import LedgerInterface, {LedgerDetailInterface} from "./shared/interfaces/LedgerInterface";
 import {LedgerRequest} from "./components/create-ledger-button-and-modal/CreateLedger";
+import {TransactionRequest} from "./components/create-transaction-button-and-modal/CreateTransaction";
 
 const checkToken = (stat: number) => {
     if(stat===401) {
@@ -108,7 +109,7 @@ export class DashboardService extends BaseApi {
         return this.post("ledgers", payload);
     }
 
-    saveTransaction(ledgerId: number, payload: LedgerRequest): Promise<LedgerDetailInterface> {
+    saveTransaction(ledgerId: number, payload: TransactionRequest): Promise<LedgerDetailInterface> {
         return this.post(`ledgers/${ledgerId}/transactions`, payload);
     }
 }
