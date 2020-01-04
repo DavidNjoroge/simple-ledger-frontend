@@ -10,7 +10,7 @@ export default interface LedgerInterface {
 } 
 
 export interface LedgerDetailInterface {
-    ledger?: LedgerInterface
+    ledger: LedgerInterface
     accounts: AccountInterface[]
     transactions: TransactionInterface[]
     ledgerSummary: LedgerSummaryInterface
@@ -29,6 +29,7 @@ export interface TransactionInterface {
 }
 
 export interface AccountInterface {
+    id:number
     name: string
     accountType: string
     description?: string

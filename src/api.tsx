@@ -107,6 +107,10 @@ export class DashboardService extends BaseApi {
     saveLedger(payload: LedgerRequest): Promise<LedgerDetailInterface> {
         return this.post("ledgers", payload);
     }
+
+    saveTransaction(ledgerId: number, payload: LedgerRequest): Promise<LedgerDetailInterface> {
+        return this.post(`ledgers/${ledgerId}/transactions`, payload);
+    }
 }
 
 export interface LoginRequestInterface {

@@ -3,23 +3,22 @@ import {Button, Modal} from "react-bootstrap";
 import LedgerForm from "../LedgerForm";
 import {DashboardService} from "../../api";
 
-export interface ICreateLedgerProps {
+export interface CreateLedgerProps {
     saveLedger: any
 }
 
-export interface ICreateLedgerState {
+export interface CreateLedgerState {
     show: boolean
 }
 
 export interface LedgerRequest {
     name: string
-
 }
 
-export default class CreateLedger extends React.Component<ICreateLedgerProps, ICreateLedgerState> {
+export default class CreateLedger extends React.Component<CreateLedgerProps, CreateLedgerState> {
     dashboardService: DashboardService = new DashboardService();
 
-    constructor(props: ICreateLedgerProps) {
+    constructor(props: CreateLedgerProps) {
         super(props);
         this.state = {
             show: false

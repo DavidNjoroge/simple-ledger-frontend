@@ -9,7 +9,7 @@ import CreateLedger, {
     LedgerRequest
 } from '../components/create-ledger-button-and-modal/CreateLedger';
 import { getLatestLedger } from '../shared/helpers/ledger';
-import CreateTransaction from "../components/create-translation-button-and-model/CreateTransaction";
+import CreateTransaction from "../components/create-transaction-button-and-modal/CreateTransaction";
 import TransactionTable from "../components/transaction-table/TransactionTable";
 import LedgerOverview from "../components/ledger-overview/LedgerOverview";
 
@@ -32,6 +32,7 @@ DashboardState
         };
 
         this.saveLedger = this.saveLedger.bind(this);
+        this.saveTransaction = this.saveTransaction.bind(this);
         this.getLedgers = this.getLedgers.bind(this);
         this.selectChange = this.selectChange.bind(this);
     }
@@ -70,10 +71,12 @@ DashboardState
 
 
     saveTransaction(payload: LedgerRequest): void {
-        this.dashboardService.saveLedger(payload).then((ledger: LedgerDetailInterface) => {
-            this.setState({ selectedLedger: ledger });
-            this.getLedgers();
-        });
+        const ledgerDetail = this.state.selectedLedger;
+        if (ledgerDetail) {
+            this.dashboardService.saveTransaction(ledgerDetail.ledger.id, payload).then((ledger: LedgerDetailInterface) => {
+                this.updateSelectedLedger(ledgerDetail.ledger.id);
+            });
+        }
     }
 
     render() {
@@ -114,7 +117,7 @@ DashboardState
                                 <h4>Transactions</h4>
                             </div>
                             <div className="col-9 ledger-section">
-                                <CreateTransaction saveTransaction={this.saveTransaction} />
+                                <CreateTransaction accounts={this.state.selectedLedger?.accounts} saveTransaction={this.saveTransaction} />
                             </div>
                         </div>
 
