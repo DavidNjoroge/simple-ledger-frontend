@@ -13,18 +13,18 @@ export interface  TransactionTableProps {
 
 export default function TransactionTable (props:  TransactionTableProps) {
     return (
-    <Table striped bordered hover size="sm">
-        <thead>
-            <tr>
-                <th>Account Name</th>
-                <th>Account Type</th>
-                <th>referenceNumber</th>
-                <th>Debit</th>
-                <th>Credit</th>
-            </tr>
-        </thead>
-        <tbody>
-        {
+        <Table striped bordered hover size="sm">
+            <thead>
+                <tr>
+                    <th>Account Name</th>
+                    <th>Account Type</th>
+                    <th>Reference Number</th>
+                    <th>Debit</th>
+                    <th>Credit</th>
+                </tr>
+            </thead>
+            <tbody>
+                {
             props.transactions?.map(transaction =>
                 <tr>
                     <td>{transaction.account.name}</td>
@@ -43,15 +43,15 @@ export default function TransactionTable (props:  TransactionTableProps) {
 
                 </tr>
             )
-        }
+                }
 
-        <tr>
-            <th colSpan={3}>Total</th>
-            <th>{props.ledgerSummary?.debit}</th>
-            <th>{props.ledgerSummary?.credit}</th>
-        </tr>
+                <tr>
+                    <th colSpan={3}>Total</th>
+                    <th>{props.ledgerSummary?.debit}</th>
+                    <th>{props.ledgerSummary?.credit}</th>
+                </tr>
 
-        </tbody>
-    </Table>
+            </tbody>
+        </Table>
     );
 }
