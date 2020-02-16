@@ -18,14 +18,18 @@
 #         - python deploy.py
 
 language: python
+python: 
+  - "3.6"
 jobs:
   include:
   - stage: test
     language: node_js
+    before_install:
+      - sudo apt-get install git-ftp
     node_js: 
       - "12"
     install:
       - npm install
     script:
       - npm run build:prod
-      - python deploy.py
+      - python3 deploy.py
