@@ -39,10 +39,10 @@ language: python
 python: 
   - "3.6"
 before_install:
+  - sudo apt-get install git-ftp
   - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
   - nvm install 10
   - nvm use 10
-
 install:
     - npm install
     - npm run build:prod
