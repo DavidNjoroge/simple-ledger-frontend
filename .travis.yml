@@ -5,6 +5,7 @@ matrix:
         - "12"
       install:
         - npm install
+      script:
         - npm run build:prod
     - language: python
       python: 
