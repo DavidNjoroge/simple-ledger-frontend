@@ -17,19 +17,31 @@
 #       script:
 #         - python deploy.py
 
+# language: python
+# python: 
+#   - "3.6"
+# jobs:
+#   include:
+#   - stage: test
+#     language: node_js
+#     before_install:
+#       - sudo apt-get install git-ftp
+#     node_js: 
+#       - "12"
+#     install:
+#       - npm install
+#     script:
+#       - npm run build:prod
+#       - python3 deploy.py
+
+
 language: python
-python: 
-  - "3.6"
-jobs:
-  include:
-  - stage: test
-    language: node_js
-    before_install:
-      - sudo apt-get install git-ftp
-    node_js: 
-      - "12"
-    install:
-      - npm install
-    script:
-      - npm run build:prod
-      - python3 deploy.py
+
+before_install:
+  - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
+  - nvm use 10
+
+install:
+    - npm install
+script:
+    - npm run build:prod
