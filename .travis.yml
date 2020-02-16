@@ -1,16 +1,31 @@
+# jobs:
+#   include:
+#     - stage: test
+
+#     - language: node_js
+#       node_js: 
+#         - "12"
+#       install:
+#         - npm install
+#       script:
+#         - npm run build:prod
+#     - language: python
+#       python: 
+#         - "3.6"
+#       before_install:
+#         - sudo apt-get install git-ftp
+#       script:
+#         - python deploy.py
+
+language: python
 jobs:
   include:
-    - language: node_js
-      node_js: 
-        - "12"
-      install:
-        - npm install
-      script:
-        - npm run build:prod
-    - language: python
-      python: 
-        - "3.6"
-      before_install:
-        - sudo apt-get install git-ftp
-      script:
-        - python deploy.py
+  - stage: test
+    language: node_js
+    node_js: 
+      - "12"
+    install:
+      - npm install
+    script:
+      - npm run build:prod
+script: python deploy.py
