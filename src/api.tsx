@@ -1,6 +1,9 @@
 import axios from "axios";
 import config  from "./config";
-import LedgerInterface, {LedgerDetailInterface} from "./shared/interfaces/LedgerInterface";
+import LedgerInterface, {
+    AccountInterface,
+    LedgerDetailInterface
+} from "./shared/interfaces/LedgerInterface";
 import {LedgerRequest} from "./components/create-ledger-button-and-modal/CreateLedger";
 import {TransactionRequest} from "./components/create-transaction-button-and-modal/CreateTransaction";
 
@@ -103,6 +106,9 @@ export class DashboardService extends BaseApi {
 
     getLedgerDetail(id: number): Promise<LedgerDetailInterface> {
         return this.get(`ledgers/${id}`);
+    }
+    searchAccounts(ledgerId: number,name: string): Promise<AccountInterface[]> {
+        return this.get(`ledgers/${ledgerId}/accounts?name=${name}`);
     }
 
     saveLedger(payload: LedgerRequest): Promise<LedgerDetailInterface> {

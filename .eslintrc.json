@@ -9,9 +9,11 @@
     "plugin:@typescript-eslint/recommended",
     "prettier",
     "prettier/@typescript-eslint",
-    "react-app"
+    "react-app",
+    "plugin:cypress/recommended"
+
   ],
-  "plugins": ["@typescript-eslint", "react"],
+  "plugins": ["@typescript-eslint", "react","cypress"],
   "rules": {
     "@typescript-eslint/consistent-type-definitions": "off",
     "@typescript-eslint/consistent-type-assertions": "warn",

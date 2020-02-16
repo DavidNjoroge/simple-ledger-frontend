@@ -1,0 +1,11 @@
+
+
+before_install:
+  - sudo apt-get install git-ftp
+
+language: python
+python:
+  - "3.6"
+# command to run tests
+script:
+  - python deploy.py

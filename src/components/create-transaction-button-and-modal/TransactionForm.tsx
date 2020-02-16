@@ -1,12 +1,16 @@
 import * as React from 'react';
 import {AccountInterface} from "../../shared/interfaces/LedgerInterface";
+import AutoCompleteInput from "../auto-complete-input/AutoCompleteInput";
 
 
 export interface TransactionFormProps {
     submitForm: any
     accounts?: AccountInterface[]
+    searchedAccounts?: AccountInterface[];
+    selectedAccount?: AccountInterface;
+    autoCompleteInput: any;
+    selectAccount: any;
 }
-
 
 export interface TransactionFormState {
     name?: string,
@@ -23,6 +27,11 @@ export default class TransactionForm extends React.Component<TransactionFormProp
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.selectAccount = this.selectAccount.bind(this);
+    }
+
+    selectAccount(account: any) {
+        console.log(account)
     }
 
     handleChange(event: any): void {
@@ -43,26 +52,26 @@ export default class TransactionForm extends React.Component<TransactionFormProp
             <form onSubmit={this.handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="accountSelect">Account</label>
-                    <select name="account" onChange={this.handleChange} className="form-control"  id="accountSelect" required>
-                        <option defaultChecked={true}></option>
-                        {
-                            this.props.accounts?.map((account, i) =>
-                                <option value={account.id} key={i}>{account.name}</option>
-                            )
-                        }
-                    </select>
+
+                    <AutoCompleteInput selectedAccount={this.props.selectedAccount} searchedAccounts={this.props.accounts} autoCompleteInput={this.props.autoCompleteInput} selectAccount={this.props.selectAccount}/>
+
                 </div>
-                <div className="form-group">
-                    <label htmlFor="referenceNumber">Reference Number</label>
-                    <input name="referenceNumber" onChange={this.handleChange} type="text" className="form-control" id="referenceNumber" placeholder="Reference Number" required />
-                </div>
+
                 <div className="form-group">
                     <label htmlFor="description">Description</label>
-                    <input name="description" onChange={this.handleChange} type="text" className="form-control" id="description" placeholder="description"/>
+                    <textarea name="description" onChange={this.handleChange} className="form-control" id="description" placeholder="description"/>
+
                 </div>
-                <div className="form-group">
-                    <label htmlFor="amount">Amount</label>
-                    <input name="amount" onChange={this.handleChange} type="number" className="form-control" id="amount" placeholder="amount" required />
+
+                <div className="row">
+                    <div className="col">
+                        <label htmlFor="referenceNumber">Reference Number</label>
+                        <input name="referenceNumber" onChange={this.handleChange} type="text" className="form-control" id="referenceNumber" placeholder="Reference Number" required />
+                    </div>
+                    <div className="col">
+                        <label htmlFor="amount">Amount</label>
+                        <input name="amount" onChange={this.handleChange} type="number" className="form-control" id="amount" placeholder="amount" required />
+                    </div>
                 </div>
                 <input type="submit" value="Submit" />
             </form>

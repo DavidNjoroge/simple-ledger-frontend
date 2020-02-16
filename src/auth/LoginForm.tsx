@@ -4,23 +4,23 @@ import * as React from 'react';
 import { Form, Button } from 'react-bootstrap';
 
 
-export interface ILoginFormProps {
+export interface LoginFormProps {
     submitForm: any
 }
 
-export interface ILoginFormState {
+export interface LoginFormState {
     value?: any
 }
 
-export default class LoginForm extends React.Component<ILoginFormProps, ILoginFormState> {
-    constructor(props: ILoginFormProps) {
+export default class LoginForm extends React.Component<LoginFormProps, LoginFormState> {
+    constructor(props: LoginFormProps) {
         super(props);
 
         this.state = {
-        }
+        };
 
-        this.handleChange = this.handleChange.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
 
     }
 
@@ -33,12 +33,11 @@ export default class LoginForm extends React.Component<ILoginFormProps, ILoginFo
     }
 
     handleSubmit(event: any) {
-        console.log('A name was submitted: ', this.state);
-        this.props.submitForm(this.state)
+        this.props.submitForm(this.state);
         event.preventDefault();
     }
 
-    public render() {
+    render() {
         return (
             <form onSubmit={this.handleSubmit}>
                 <Form.Group controlId="formBasicEmail">

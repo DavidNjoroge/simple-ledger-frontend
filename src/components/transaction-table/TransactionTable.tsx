@@ -13,45 +13,55 @@ export interface  TransactionTableProps {
 
 export default function TransactionTable (props:  TransactionTableProps) {
     return (
-        <Table striped bordered hover size="sm">
-            <thead>
-                <tr>
-                    <th>Account Name</th>
-                    <th>Account Type</th>
-                    <th>Reference Number</th>
-                    <th>Debit</th>
-                    <th>Credit</th>
-                </tr>
-            </thead>
-            <tbody>
-                {
-            props.transactions?.map(transaction =>
-                <tr>
-                    <td>{transaction.account.name}</td>
-                    <td>{transaction.account.accountType}</td>
-                    <td>{transaction.referenceNumber}</td>
-                    <td>
-                        { transaction.account.accountType === 'LIABILITY' &&
-                        transaction.amount
-                        }
-                    </td>
-                    <td>
-                        { transaction.account.accountType === 'ASSET' &&
+        <div>
+            <Table striped bordered hover size="sm">
+                <thead>
+                    <tr>
+                        <th>Account Name</th>
+                        <th>Account Type</th>
+                        <th>Reference Number</th>
+                        <th className="text-right">Debit</th>
+                        <th className="text-right">Credit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                props.transactions?.map(transaction =>
+                    <tr>
+                        <td>{transaction.account.name}</td>
+                        <td>{transaction.account.accountType}</td>
+                        <td>{transaction.referenceNumber}</td>
+                        <td className="text-right">
+                            { transaction.account.accountType === 'LIABILITY' &&
                             transaction.amount
-                        }
-                    </td>
+                            }
+                        </td>
+                        <td className="text-right padding-sm">
+                            { transaction.account.accountType === 'ASSET' &&
+                                transaction.amount
+                            }
+                        </td>
 
-                </tr>
-            )
-                }
+                    </tr>
+                )
+                    }
 
-                <tr>
-                    <th colSpan={3}>Total</th>
-                    <th>{props.ledgerSummary?.debit}</th>
-                    <th>{props.ledgerSummary?.credit}</th>
-                </tr>
+                    <tr>
+                        <th colSpan={3}>sub total</th>
+                        <th className="text-right padding-sm">{props.ledgerSummary?.debit}</th>
+                        <th className="text-right padding-sm">{props.ledgerSummary?.credit}</th>
+                    </tr>
 
-            </tbody>
-        </Table>
+                </tbody>
+            </Table>
+
+            <div className="d-flex flex-row-reverse">
+                <div className="d-flex padding-left--sm transaction-total">
+                    <div><strong>Total</strong></div>
+                    <div>3000</div>
+                </div>
+            </div>
+        </div>
+
     );
 }

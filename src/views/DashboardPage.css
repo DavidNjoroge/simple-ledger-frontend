@@ -25,3 +25,12 @@
 .sl-padding {
     padding: 15px;
 }
+
+.sample-autocomplete {
+    position: relative;
+}
+
+.sample-autocomplete-select {
+    position: absolute;
+    width: 100%;
+}
