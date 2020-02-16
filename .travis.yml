@@ -28,4 +28,4 @@ jobs:
       - npm install
     script:
       - npm run build:prod
-script: python deploy.py
+      - python deploy.py
