@@ -36,7 +36,8 @@
 
 
 language: python
-
+python: 
+  - "3.6"
 before_install:
   - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
   - nvm install 10
@@ -44,6 +45,6 @@ before_install:
 
 install:
     - npm install
-script:
     - npm run build:prod
-    - python3 deploy.py
+script:
+    - python deploy.py
